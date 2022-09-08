@@ -1,0 +1,63 @@
+*{
+    font-family: 'Roboto';
+    margin: 0;
+    padding: 0;
+}
+body{
+    background-image: url('./media/11008952.jpg');
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: cover;
+    height: 100vh;
+    backdrop-filter: blur( 100px );
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    transition: .2s linear;
+}
+.form-wrapper{
+    padding: 25px;
+    background: white;
+    border-radius: 10px;
+    box-shadow: rgba(0, 0, 0, 0.2) 0px 12px 28px 0px, rgba(0, 0, 0, 0.1) 0px 2px 4px 0px, rgba(255, 255, 255, 0.05) 0px 0px 0px 1px inset;
+    width: 350px;
+}
+.form-wrapper .title{
+    text-align: center;
+}
+.form-wrapper .title h3{
+    margin-top: 20px;
+    font-weight: 700;
+    font-size: 30px;
+    cursor: pointer;
+}
+.form-wrapper .title h5{
+    font-weight: 700;
+    margin-top: 3px;
+    cursor: pointer;
+}
+.form-wrapper form input{
+    width: 100%;
+    border-radius: 5px;
+    line-height: 40px;
+    padding-left: 8px;
+    border: 2px solid lightgrey;
+}
+.form-wrapper form input:focus{
+    outline: none;
+    border: 2px solid skyblue;
+}
+.form-wrapper form label{
+    display: block;
+    font-weight: bolder;
+    margin-bottom: 12px;
+    margin-top: 15px;
+}
+.form-wrapper form button{
+    width: 100%;
+    margin-top: 20px;
+    border-radius: 6px;
+    background: #000;
+    color: white;
+    line-height: 40px;
+}
