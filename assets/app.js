@@ -1,26 +1,91 @@
-let submitBtn = document.querySelector(".submit-btn");
-let passwordInput = document.querySelector("#password");
-let isUpper = false;
-let isDigit = false;
-let numbers = [0,1,2,3,4,5,6,7,8,9];
-passwordInput.addEventListener("keyup",function(e){
-    console.log(e.target.value);
-    let word = e.target.value;
-    if (!isUpper) {
-        for (let i = 0; i < word.length; i++) {
-            if (word[i].toUpperCase()==word[i]) {
-                document.body.style.backdropFilter = "blur(75px)";
-                break;
-            }
-        }
-    } 
-    if (!isDigit) {
-        for (let i = 0; i < numbers.length; i++) {
-           for (let j = 0; j < word.length; j++) {
-                if (numbers[i]==word[j]) {
-                    document.body.style.backdropFilter = "blur(50px)";
-                }
-           }
-        }
+const passwordInput = document.querySelector("#password");
+const container = document.querySelector("#root");
+
+const SPECIAL_CHARACTERS = [
+  "!",
+  '"',
+  "#",
+  "$",
+  "%",
+  "&",
+  ",",
+  "*",
+  "+",
+  "-",
+  "/",
+  ":",
+  ";",
+  "<",
+  "=",
+  ">",
+  "@",
+  "[",
+  "]",
+  "^",
+  "-",
+  "{",
+  "|",
+  "`",
+  "}",
+  "~",
+];
+
+const UPPERCASE_LETTERS = [
+  "A",
+  "B",
+  "C",
+  "D",
+  "E",
+  "F",
+  "G",
+  "H",
+  "I",
+  "J",
+  "K",
+  "L",
+  "M",
+  "N",
+  "O",
+  "P",
+  "Q",
+  "R",
+  "S",
+  "T",
+  "U",
+  "V",
+  "W",
+  "X",
+  "Y",
+  "Z",
+];
+
+const NUMBERS = [0, 1, 2, 3, 4, 5, 6, 7, 8, 9];
+
+const onPasswordChange = (e) => {
+  if (!e.target.value) return;
+  blurValue = 40;
+  blurValue -= checkPasswordLength(e.target.value);
+  blurValue -= checkIfArrayContains(e.target.value, SPECIAL_CHARACTERS);
+  blurValue -= checkIfArrayContains(e.target.value, UPPERCASE_LETTERS);
+  blurValue -= checkIfArrayContains(e.target.value, NUMBERS);
+  container.style.filter = `blur(${blurValue || 0}px)`;
+};
+
+const checkPasswordLength = (value) => {
+  return value.length >= 8 ? 10 : 0;
+};
+
+const checkIfArrayContains = (value, array) => {
+  for (let char of array) {
+    if (value.includes(char)) {
+      return 10;
     }
-})
+  }
+  return 0;
+};
+
+passwordInput.addEventListener("onchange", (e) => {
+  console.log(e.target.value);
+});
+
+passwordInput.addEventListener("keyup", onPasswordChange);
